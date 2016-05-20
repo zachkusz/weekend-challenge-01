@@ -10,26 +10,36 @@ $(document).ready(function(){
   $('#employeeinfo').on('submit', function(event){
     event.preventDefault();
 
-    //loops through entered info to enter it into an object?
-    var values = {};
+    //loops through entered info to enter it into an object
+    var employee = {};
     $.each($('#employeeinfo').serializeArray(), function(i, field){
-      values[field.name] = field.value;
+      employee[field.name] = field.value;
     })
 
-    console.log(values);
+    console.log(employee);
+
+    $.ajax ({
+    type: 'POST',
+    url: '/employees',
+    data: employee,
+    success: function (data) {
+      //make function to append dom - use it here
+      console.log('posted!');
+    }
+  });
 
     //clear out inputs
     $('#employeeinfo').find('input[type=text]').val('');
 
     //Calculates salary at yearly and monthly costszach.kusz
-    yearlyCost += Number(values.employeesalary);
+    yearlyCost += Number(employee.employeesalary);
     monthlyCost = (yearlyCost / 12);
 
-    //new way to calculate monthly sal that is appended to each .person
+    //calculate monthly sal that is appended to each .person
     //one at a time
 
     console.log(monthlyCost);
-    appendDom(values);
+    appendDom(employee);
 
     i++;
   });

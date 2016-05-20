@@ -2,12 +2,14 @@ var express =  require('express');
 var app = express();
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index'); //posibly routes/index?
+var index = require('./routes/index');
+var employees = require('./routes/employees');
 
 //magic
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
+app.use('/employees', employees);
 app.use('/', index);
 
 //port
