@@ -12,9 +12,9 @@ router.post('/', function(req, res) {
     }
 
     client.query('INSERT INTO employees ' +
-                '(first_name, last_name, id_number, job_title, salary) ' +
-                'VALUES ($1, $2, $3, $4, $5)',
-    [employee.firstname, employee.lastname, employee.empID, employee.jobtitle, employee.salary],
+                '(first_name, last_name, id_number, job_title, salary, active) ' +
+                'VALUES ($1, $2, $3, $4, $5, $6)',
+    [employee.firstname, employee.lastname, employee.empID, employee.jobtitle, employee.salary, employee.active],
                   function(err, result) {
                     done();
 
