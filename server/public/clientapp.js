@@ -1,6 +1,6 @@
 //Zach kusz, April 30, 2016. UPDATED May 19, 2016.
 $(document).ready(function(){
-
+getEmployees();
   //initializes variables used to calulate salary
   var array = [];
   var yearlyCost = 0;
@@ -23,7 +23,7 @@ $(document).ready(function(){
     url: '/employees',
     data: employee,
     success: function (data) {
-      //make function to append dom - use it here
+      getEmployees();//make function to append dom - use it here
       console.log('posted!');
     }
   });
@@ -43,20 +43,35 @@ $(document).ready(function(){
 
     i++;
   });
+  function getEmployees() {
+    $.ajax ({
+    type: 'GET',
+    url: '/employees',
+    //data: employee,
+    success: function (data) {
+      appendDom(data);
+      console.log('posted!');
+      }
+    });
+  }
 
-  function appendDom(empInfo) {
+  function appendDom(data) {
+    console.log(data);
+
     //makes a div to "store" the object info
     $('#container').append('<div class="person"></div>');
     //sets the last made object to a variable for ease of reference
     var $el = $('#container').children().last();
     //adds the employee info to the new div to make it visible to user
-    $el.append('<p>First Name: ' + empInfo.employeefirstname + '</p>');
-    $el.append('<p>Last Name: ' + empInfo.employeelastname + '</p>');
-    $el.append('<p>ID: ' + empInfo.employeeID + '</p>');
-    $el.append('<p>Job Title: ' + empInfo.employeejobtitle+ '</p>');
-    $el.append('<p>Salary: ' + empInfo.employeesalary + '</p>');
+    data.forEach(function(row) {
+    $el.append('<p>First Name: ' + row.first_name + '</p>');
+    $el.append('<p>Last Name: ' + row.last_name + '</p>');
+    $el.append('<p>ID: ' + row.id_number + '</p>');
+    $el.append('<p>Job Title: ' + row.job_title+ '</p>');
+    $el.append('<p>Salary: ' + row.salary + '</p>');
     $el.append('<p>New Total Monthly Cost: ' + monthlyCost + '</p>');
     $el.data("monthlysalary", monthlyCost);
+  });
   }
 
   //Button to clear out last entry
