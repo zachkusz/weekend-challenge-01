@@ -1,0 +1,29 @@
+{
+  "name": "back-to-the-future",
+  "version": "2.0.0",
+  "description": "adding the server side of the stack to an old project",
+  "main": "serverapp.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/serverapp.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zachkusz/weekend-challenge-01.git"
+  },
+  "keywords": [
+    "full",
+    "stack"
+  ],
+  "author": "Zach Kusz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zachkusz/weekend-challenge-01/issues"
+  },
+  "homepage": "https://github.com/zachkusz/weekend-challenge-01#readme",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "express": "^4.13.4",
+    "pg": "^4.5.5"
+  }
+}
