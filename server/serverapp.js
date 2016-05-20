@@ -4,12 +4,14 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var employees = require('./routes/employees');
+var salaries = require('./routes/salaries');
 
 //magic
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
 app.use('/employees', employees);
+app.use('/salaries', salaries);
 app.use('/', index);
 
 //port
